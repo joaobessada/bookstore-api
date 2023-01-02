@@ -1,13 +1,19 @@
 package com.bessada.bookstore.Domain;
 
-import java.util.Objects;
+import jakarta.persistence.*;
 
-public class Livro {
+import java.io.Serializable;
+import java.util.Objects;
+@Entity
+public class Livro implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
     private String nome_autor;
     private String texto;
-
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     public Livro() {
